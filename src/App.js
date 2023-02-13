@@ -3,10 +3,13 @@ import "./App.css";
 import Card from "./components/Card";
 import Input from "./components/Input";
 import { useEffect, useState } from "react";
+import Button from "./components/Button";
 
 const App = () => {
   const [name, setName] = useState("Java Developer");
   const [surname, setSurname] = useState("Java Developer");
+  
+  const [myCard,setMyCard] = useState("");
 
   useEffect(() => {}, []);
 
@@ -19,6 +22,11 @@ const App = () => {
     debugger;
     setSurname(event.target.value);
   };
+
+  const btnClick =()=> {
+    const element =<p>{name +" "+surname}</p>;
+    setMyCard(element)
+  }
 
   return (
     <div>
@@ -37,7 +45,8 @@ const App = () => {
         value={surname}
         onChange={onChangeSurnmae}
       />
-      {name}
+      <Button onClick={btnClick}/>
+      {myCard}
     </div>
   );
 };
