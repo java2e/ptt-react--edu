@@ -4,8 +4,16 @@ import Card from "./components/Card";
 import Input from "./components/Input";
 import { useEffect, useState } from "react";
 import Button from "./components/Button";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
+
+
+  const dispatch = useDispatch();
+  const counter = useSelector(state => state.counter);
+
+
+
   const [name, setName] = useState("Java Developer");
   const [surname, setSurname] = useState("Java Developer");
   
@@ -28,6 +36,15 @@ const App = () => {
     setMyCard(element)
   }
 
+  const btnArtir=()=>{
+    dispatch({type:'increment'})
+  }
+
+  const btnAzalt=()=>{
+    dispatch({type:'decrement'})
+  }
+
+
   return (
     <div>
       <Card />
@@ -46,7 +63,21 @@ const App = () => {
         onChange={onChangeSurnmae}
       />
       <Button onClick={btnClick}/>
-      {myCard}
+      
+
+
+<div>
+
+<Button title="Artır" click={btnArtir} />
+<Button title="Azalt" click={btnAzalt}/>
+{"Sayı:" + counter}
+
+
+
+</div>
+
+
+
     </div>
   );
 };
