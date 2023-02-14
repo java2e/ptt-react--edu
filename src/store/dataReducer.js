@@ -15,8 +15,20 @@ const listReducer=(state={veri:[]},action)=> {
 
      
       return {
-        veri:veri.slice(veri.length-1,veri.length)
+        veri:veri.slice(0,-1)
       }
+  }
+
+  else if(action.type === 'kolonSil') {
+
+    const {veri} = state;
+
+    const lastVeri = veri.filter(v=> v.tc !== action.data.id)
+
+    return {
+      veri: lastVeri
+    }
+
   }
 
   return state;

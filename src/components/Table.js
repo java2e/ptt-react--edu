@@ -1,7 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Table = (props) => {
+
+  const dispatch= useDispatch();
   const liste = useSelector((state) => state.veri);
+
+  const kolonSil =(id)=>{
+
+    dispatch({type:"kolonSil",data:{id:id}})
+
+  }
+
 
   let elements = "";
   debugger;
@@ -12,6 +21,7 @@ const Table = (props) => {
           <td>{element.tc}</td>
           <td>{element.ad}</td>
           <td>{element.soyad}</td>
+          <td><button onClick={()=>kolonSil(element.tc)}>Sil</button></td>
         </tr>
       );
     });
