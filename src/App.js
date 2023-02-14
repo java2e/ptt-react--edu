@@ -1,83 +1,65 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Card from "./components/Card";
-import Input from "./components/Input";
-import { useEffect, useState } from "react";
-import Button from "./components/Button";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Button from "./components/Button";
+import Input from "./components/Input";
+import Table from "./components/Table";
 
 const App = () => {
-
-
   const dispatch = useDispatch();
-  const counter = useSelector(state => state.counter);
 
+ 
 
+  const [tc, setTc] = useState("");
+  const [ad, setAd] = useState("");
+  const [soyad, setSoyad] = useState("");
 
-  const [name, setName] = useState("Java Developer");
-  const [surname, setSurname] = useState("Java Developer");
-  
-  const [myCard,setMyCard] = useState("");
-
-  useEffect(() => {}, []);
-
-  const onChangeName = (event) => {
-    debugger;
-    setName(event.target.value);
+  const btnEkle = () => {
+    dispatch({
+      type: "ekle",
+      data: { tc: tc, ad: ad, soyad: soyad },
+    });
+  };
+  const btnSil = () => {
+    dispatch({type:"sil"})
   };
 
-  const onChangeSurnmae = (event) => {
-    debugger;
-    setSurname(event.target.value);
+  const onChangeText = (event) => {
+    const id = event.target.id;
+    const value = event.target.value;
+    if (id === "tc") setTc(value);
+    else if (id === "ad") {
+      setAd(value);
+    } else if (id === "soyad") {
+      setSoyad(value);
+    }
   };
-
-  const btnClick =()=> {
-    const element =<p>{name +" "+surname}</p>;
-    setMyCard(element)
-  }
-
-  const btnArtir=()=>{
-    dispatch({type:'increment'})
-  }
-
-  const btnAzalt=()=>{
-    dispatch({type:'decrement'})
-  }
-
 
   return (
     <div>
-      <Card />
       <Input
-        id={"name"}
-        title={"Adı"}
-        for={"name"}
-        value={name}
-        onChange={onChangeName}
+        name="tc"
+        id="tc"
+        for="tc"
+        title="TC NO:"
+        onChange={onChangeText}
       />
       <Input
-        id={"surname"}
-        title={"surname"}
-        for={"surname"}
-        value={surname}
-        onChange={onChangeSurnmae}
+        name="ad"
+        id="ad"
+        for="ad"
+        title="Adınız :"
+        onChange={onChangeText}
       />
-      <Button onClick={btnClick}/>
-      
-
-
-<div>
-
-<Button title="Artır" click={btnArtir} />
-<Button title="Azalt" click={btnAzalt}/>
-{"Sayı:" + counter}
-
-
-
-</div>
-
-
-
+      <Input
+        name="soyad"
+        id="soyad"
+        for="soyad"
+        title="Soyadınız"
+        onChange={onChangeText}
+      />
+      <Button title="Ekle" click={btnEkle} />
+      <Button title="Sil" click={btnSil} />
+      <Table />
     </div>
   );
 };

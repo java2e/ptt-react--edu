@@ -22,6 +22,30 @@ const counterReducer =(state={counter:20},action)=>{
 
 }
 
-const store = createStore(counterReducer);
+const dataReducer=(state={veri:[]},action) =>{
+
+  if(action.type==="ekle") {
+
+    return {
+      name:action.data.name,
+      surname:action.data.surname
+    }
+
+  }
+  else if(action.type === 'sil'){
+    return {
+      name: "",
+      surname:""
+    }
+
+  }
+
+  return state;
+
+
+
+}
+
+const store = createStore(dataReducer);
 
 export default store;
