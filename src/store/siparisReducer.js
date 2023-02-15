@@ -55,6 +55,7 @@ const siparisReducer = (state = initState, action) => {
       }
     }
   } else if (action.type === "MENU_LOAD") {
+    debugger
     return {
       menuList: action.data.menuList,
     };
