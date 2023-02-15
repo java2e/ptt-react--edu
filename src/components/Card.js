@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 
-const MyCard = () => {
+const MyCard = (props) => {
   const dispatch = useDispatch();
 
   const btnEkle = () => {
@@ -31,7 +31,7 @@ const MyCard = () => {
   const header = (
     <img
       alt="Card"
-      src="https://primefaces.org/cdn/primereact/images/usercard.png"
+      src={"./img/"+props.image}
     />
   );
   const footer = (
@@ -49,8 +49,8 @@ const MyCard = () => {
   return (
     <div class="col-6 align-items-center justify-content-center">
       <Card
-        title="Title"
-        subTitle="Subtitle"
+        title={props.title}
+        subTitle={props.description}
         footer={footer}
         header={header}
         className="md:w-25rem"
