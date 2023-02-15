@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './store/dataReducer';
+import store from './store/siparisReducer';
 import { BrowserRouter } from 'react-router-dom';
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
